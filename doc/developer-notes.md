@@ -10,8 +10,7 @@ commits.
 
 Do not submit patches solely to modify the style of existing code.
 
-## Coding Style (C++)
-
+> ## Coding Style (C++)
 - **Indentation and whitespace rules** as specified in
 [src/.clang-format](/src/.clang-format). You can use the provided
 [clang-format-diff script](/contrib/devtools/README.md#clang-format-diffpy)
@@ -32,7 +31,7 @@ tool to clean up patches automatically before submission.
     [AlignAfterOpenBracket](https://clang.llvm.org/docs/ClangFormatStyleOptions.html)
     style option.
 
-- **Symbol naming conventions**. These are preferred in new code, but are not
+> - **Symbol naming conventions**. These are preferred in new code, but are not
 required when doing so would need changes to significant pieces of existing
 code.
   - Variable (including function arguments) and namespace names are all lowercase and may use `_` to
@@ -41,7 +40,8 @@ code.
     - Global variables have a `g_` prefix.
   - Constant names are all uppercase, and use `_` to separate words.
   - Enumerator constants may be `snake_case`, `PascalCase` or `ALL_CAPS`.
-    This is a more tolerant policy than the [C++ Core
+    This is a more tolerant policy than the
+    > [C++ Core
     Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Renum-caps),
     which recommend using `snake_case`.  Please use what seems appropriate.
   - Class names, function names, and method names are UpperCamelCase
@@ -67,8 +67,10 @@ code.
     `NOLINTNEXTLINE(misc-no-recursion)` to suppress the check.
 
 For function calls a namespace should be specified explicitly, unless such functions have been declared within it.
-Otherwise, [argument-dependent lookup](https://en.cppreference.com/w/cpp/language/adl), also known as ADL, could be
+Otherwise,
+> [argument-dependent lookup](https://en.cppreference.com/w/cpp/language/adl), also known as ADL, could be
 triggered that makes code harder to maintain and reason about:
+>  
 ```c++
 #include <filesystem>
 
@@ -88,7 +90,7 @@ int main()
 }
 ```
 
-Block style example:
+> Block style example:
 ```c++
 int g_count{0};
 
@@ -120,7 +122,7 @@ public:
 } // namespace foo
 ```
 
-### Coding Style (C++ functions and methods)
+> ### Coding Style (C++ functions and methods)
 
 - When ordering function parameters, place input parameters first, then any
   in-out parameters, followed by any output parameters.
@@ -140,7 +142,7 @@ public:
   non-optional in-out and output parameters should usually be references, as
   they cannot be null.
 
-### Coding Style (C++ named arguments)
+> ### Coding Style (C++ named arguments)
 
 When passing named arguments, use a format that clang-tidy understands. The
 argument names can otherwise not be verified by clang-tidy.
@@ -156,7 +158,7 @@ int main()
 }
 ```
 
-### Running clang-tidy
+> ### Running clang-tidy
 
 To run clang-tidy on Ubuntu/Debian, install the dependencies:
 
@@ -191,7 +193,7 @@ To run clang-tidy on the changed source lines:
 git diff | ( cd ./src/ && clang-tidy-diff -p2 -path ../build -j $(nproc) )
 ```
 
-## Coding Style (Python)
+> ## Coding Style (Python)
 
 Refer to [/test/functional/README.md#style-guidelines](/test/functional/README.md#style-guidelines).
 
@@ -300,7 +302,7 @@ MacOS: `brew install doxygen graphviz`
 
 ## Development tips and tricks
 
-### Compiling for debugging
+> ### Compiling for debugging
 
 When using the default build configuration by running `cmake -B build`, the
 `-DCMAKE_BUILD_TYPE` is set to `RelWithDebInfo`. This option adds debug symbols
@@ -342,7 +344,7 @@ build option adds `-DDEBUG_LOCKORDER` to the compiler flags. This inserts
 run-time checks to keep track of which locks are held and adds warnings to the
 `debug.log` file if inconsistencies are detected.
 
-### DEBUG_LOCKCONTENTION
+> ### DEBUG_LOCKCONTENTION
 
 Defining `DEBUG_LOCKCONTENTION` adds a "lock" logging category to the logging
 RPC that, when enabled, logs the location and duration of each lock contention
